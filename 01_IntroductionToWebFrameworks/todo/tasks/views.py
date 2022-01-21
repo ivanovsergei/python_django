@@ -10,7 +10,6 @@ class ToDoView(View):
                '<li>7</li>', '<li>8</li>', '<li>9</li>', '<li>10</li>']
 
         random_res = (random.choices(lst, k=5))
-        for i in random_res:
-            print(i)
-        print(random_res)
+        random_res.insert(0, '<ul>')
+        random_res.append('</ul>')
         return HttpResponse(random_res)
