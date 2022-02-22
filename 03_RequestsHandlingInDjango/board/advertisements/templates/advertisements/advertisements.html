@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>advertisements</title>
+</head>
+<body>
+    <h2>Список объявлений </h2>
+
+
+    <ul>
+        {% for advertisement in advertisements %}
+        <li>{{advertisement}}</li>
+        {% endfor %}
+    </ul>
+
+    <div>
+        Число вызовов: {{COUNT}}
+    </div>
+</body>
+</html>

@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>categories</title>
+</head>
+<body>
+    <h2>Список категорий объявлений</h2>
+
+    <ul>
+        {% for categorie in categories_lst %}
+        <li>{{categorie}}</li>
+        {% endfor %}
+    </ul>
+</body>
+</html>
