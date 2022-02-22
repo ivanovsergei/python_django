@@ -44,10 +44,14 @@ MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
-    'django.middleware.csrf.CsrfViewMiddleware',
+    # 'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'board.middleware.filter_ip_middleware.FilterIPMiddleware',
+    # 'board.middleware.pause_(n)req_middleware.PauseNReqMiddleware',
+    # 'board.middleware.guard_ip_middleware.GuardIPMiddleware',
+    'board.middleware.info_request_middleware.InfoRequestMiddleware',
 ]
 
 ROOT_URLCONF = 'board.urls'

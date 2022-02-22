@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>contacts</title>
+</head>
+<body>
+    <p>
+        {% for phone_num in phone_nums %}
+            Контактный телефон: {{phone_num}}
+        {% endfor %}
+
+    </p>
+    <p>
+        {% for email in emails %}
+            Электронная почта: {{email}}
+        {% endfor %}
+    </p>
+
+</body>
+</html>
