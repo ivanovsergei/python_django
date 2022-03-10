@@ -6,6 +6,7 @@ class Advertisement(models.Model):
     description = models.CharField(max_length=1000, default='', verbose_name='Описание')
     created_at = models.DateTimeField(auto_now_add=True, db_index=True, verbose_name='Дата создания')
     updated_at = models.DateTimeField(auto_now=True, verbose_name='Дата обновления')
+    closed_at = models.DateTimeField(auto_now=True, verbose_name='Дата окончания публикации.')
     price = models.FloatField(verbose_name='цена', default=0)
     views_count = models.IntegerField(verbose_name='количество просмотров', default=0)
     status = models.ForeignKey('AdvertisementStatus', default=None, null=True, on_delete=models.CASCADE,

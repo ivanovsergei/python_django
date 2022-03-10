@@ -5,7 +5,7 @@ from ads.models import Advertisement, AdvertisementAuthor
 
 @admin.register(Advertisement)
 class AdvertisementAdmin(admin.ModelAdmin):
-    readonly_fields = ('updated_at', 'created_at')
+    readonly_fields = ('created_at', 'updated_at', 'closed_at')
 
 
 @admin.register(AdvertisementAuthor)
