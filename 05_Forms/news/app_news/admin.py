@@ -1,11 +1,6 @@
 from django.contrib import admin
-from app_news.models import User, News, Comment
+from app_news.models import News, Comment
 # Register your models here.
-
-
-@admin.register(User)
-class UserAdmin(admin.ModelAdmin):
-    pass
 
 
 @admin.register(News)
