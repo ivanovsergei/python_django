@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>news-detail</title>
+</head>
+<body>
+    <h1>{{ object.name }}</h1>
+    <a href="{% url 'news_list' %}">На главную</a>
+
+    <p>Содержание: {{ object.content }}</p>
+    <ul>
+        {% for comment in object.comments.all %}
+        <li>
+            <p> Комментарий: {{comment.user_comment}} </p>
+            <p> Автор: {{comment.user_name}} </p>
+        </li>
+        {% endfor %}
+    </ul>
+
+    {% if request.user.is_authenticated %}
+        <h3>
+            Добавить комментарий от {{ request.user.username }}
+            <a href="{% url 'logout' %}">Выйти</a>
+        </h3>
+        <div>
+            <form method="POST" class="post-form">
+                {% csrf_token %}
+                <p>{{ form.user_comment }}</p>
+                <p><button type="submit">Добавить</button></p>
+            </form>
+        </div>
+    {% else %}
+        <h3>
+            Вы неавторизованны на нашем сайте.
+            <a href="{% url 'login' %}">Войти</a>
+        </h3>
+        <div>
+            <form method="POST" class="post-form">
+                {% csrf_token %}
+                <p><b>Введите имя :</b></p>
+                <p><input type="text" size="35"></p>
+                <p><b>Введите комментарий:</b></p>
+                <p><textarea rows="5" cols="35" name="text"></textarea></p>
+                <p><input type="submit" value="Добавить"></p>
+            </form>
+        </div>
+    {% endif %}
+
+</body>
+</html>
