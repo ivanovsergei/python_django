@@ -10,14 +10,14 @@ class NewsForm(forms.ModelForm):
         fields = '__all__'
 
 
-class CommentAuthForm(forms.ModelForm):
+class CommentFormIsAuth(forms.ModelForm):
     class Meta:
         model = Comment
         fields = ('user_comment',)
         widgets = {'user_comment': Textarea(attrs={'cols': 35, 'rows': 5})}
 
 
-class CommentNotAuthForm(forms.ModelForm):
+class CommentFormNotIsAuth(forms.ModelForm):
     class Meta:
         model = Comment
         fields = ('user_name', 'user_comment')

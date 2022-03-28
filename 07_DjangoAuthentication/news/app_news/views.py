@@ -7,7 +7,7 @@ from django.views import View
 from django.views.generic import ListView, DetailView
 from django.views.generic.edit import FormMixin
 
-from .forms import NewsForm, CommentAuthForm, CommentNotAuthForm
+from .forms import NewsForm, CommentFormIsAuth, CommentFormNotIsAuth
 from .models import News, Comment
 
 
@@ -55,39 +55,18 @@ class NewsDetailView(FormMixin, DetailView):
     template_name = 'news/news_detail.html'
     model = News
 
-    if User.is_authenticated:
-        form_class = CommentAuthForm
-
-        def get_success_url(self):
-            return reverse('news_detail', kwargs={'pk': self.object.id})
-
-        def get_context_data(self, **kwargs):
-            context = super(NewsDetailView, self).get_context_data(**kwargs)
-            context['form'] = CommentAuthForm(initial={'post': self.object})
-            return context
-    else:
-        form_class = CommentNotAuthForm
-
-        def get_success_url(self):
-            return reverse('news_detail', kwargs={'pk': self.object.id})
-
-        def get_context_data(self, **kwargs):
-            context = super(NewsDetailView, self).get_context_data(**kwargs)
-            context['form'] = CommentNotAuthForm(initial={'post': self.object})
-            return context
-
-    def post(self, request, *args, **kwargs):
-        self.object = self.get_object()
-        form = self.get_form()
-        if form.is_valid():
-            return self.form_valid(form)
+    def post(self, request, news_pk):
+        news = News.objects.get(pk=news_pk)
+        if request.user.is_authenticated:
+            form = CommentFormIsAuth(request.POST)
         else:
-            return self.form_invalid(form)
+            form = CommentFormNotIsAuth(request.POST)
 
-    def form_valid(self, form):
-        print('Сохранение формы выключено.')
-        # form.save()
-        return super(NewsDetailView, self).form_valid(form)
+        if form.is_valid():
+            # News.objects.create(**form.cleaned_data)
+            return HttpResponseRedirect('/news/news_detail')
+
+        return render(request, 'news/news_detail.html', )
 
 
 class LoginView(LoginView):
