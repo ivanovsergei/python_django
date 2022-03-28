@@ -1,3 +1,4 @@
+from django.contrib.auth.models import User
 from django.db import models
 
 
@@ -24,7 +25,7 @@ class Comment(models.Model):
         ('a', 'Активен'),
         ('d', 'Удалено Администратором'),
     ]
-    user_name = models.CharField(max_length=20, verbose_name='Имя пользователя')
+    user_name = models.ForeignKey(User, on_delete=models.CASCADE, verbose_name='Имя пользователя')
     user_comment = models.CharField(max_length=2000, verbose_name='Комментарий')
     news = models.ForeignKey('News', default=None, on_delete=models.SET_NULL, null=True,
                              related_name='comments', verbose_name='Новости')

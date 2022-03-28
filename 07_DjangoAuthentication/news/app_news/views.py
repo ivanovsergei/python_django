@@ -6,7 +6,7 @@ from django.views import View
 from django.views.generic import ListView, DetailView
 from django.views.generic.edit import FormMixin
 
-from .forms import NewsForm, CommentForm
+from .forms import NewsForm, CommentAuthForm, CommentNotAuthForm
 from .models import News, Comment
 
 
@@ -53,14 +53,14 @@ class NewsEditFormView(View):
 class NewsDetailView(FormMixin, DetailView):
     template_name = 'news/news_detail.html'
     model = News
-    form_class = CommentForm
+    form_class = CommentNotAuthForm
 
     def get_success_url(self):
         return reverse('news_detail', kwargs={'pk': self.object.id})
 
     def get_context_data(self, **kwargs):
         context = super(NewsDetailView, self).get_context_data(**kwargs)
-        context['form'] = CommentForm(initial={'post': self.object})
+        context['form'] = CommentNotAuthForm(initial={'post': self.object})
         return context
 
     def post(self, request, *args, **kwargs):
@@ -72,7 +72,7 @@ class NewsDetailView(FormMixin, DetailView):
             return self.form_invalid(form)
 
     def form_valid(self, form):
-        print(form.user_name)
+        print('Сохранение формы выключено.')
         # form.save()
         return super(NewsDetailView, self).form_valid(form)
 
