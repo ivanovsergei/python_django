@@ -24,7 +24,7 @@
             <a href="{% url 'logout' %}">Выйти</a>
         </h3>
         <div>
-            <form method="POST" class="post-form">
+            <form method="POST" class="post-auth-form">
                 {% csrf_token %}
                 <p>{{ form.as_p }}</p>
                 <p><button type="submit">Добавить</button></p>
@@ -36,7 +36,7 @@
             <a href="{% url 'login' %}">Войти</a>
         </h3>
         <div>
-            <form method="POST" class="post-form">
+            <form method="POST" class="post-not-auth-form">
                 {% csrf_token %}
                 <p>{{ form.as_p }}</p>
                 <p><input type="submit" value="Добавить"></p>

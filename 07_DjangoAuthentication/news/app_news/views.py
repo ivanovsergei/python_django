@@ -54,21 +54,19 @@ class NewsEditFormView(View):
 class NewsDetailView(FormMixin, DetailView):
     template_name = 'news/news_detail.html'
     model = News
-    if User.is_active:
-        print(User.is_active)
-        form_class = CommentAuthForm
 
+    if User.is_authenticated:
+        form_class = CommentAuthForm
 
         def get_success_url(self):
             return reverse('news_detail', kwargs={'pk': self.object.id})
 
         def get_context_data(self, **kwargs):
             context = super(NewsDetailView, self).get_context_data(**kwargs)
-            context['form'] = CommentNotAuthForm(initial={'post': self.object})
+            context['form'] = CommentAuthForm(initial={'post': self.object})
             return context
     else:
         form_class = CommentNotAuthForm
-        print(User.is_active)
 
         def get_success_url(self):
             return reverse('news_detail', kwargs={'pk': self.object.id})

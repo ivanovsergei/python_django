@@ -10,6 +10,13 @@ class NewsForm(forms.ModelForm):
         fields = '__all__'
 
 
+class CommentAuthForm(forms.ModelForm):
+    class Meta:
+        model = Comment
+        fields = ('user_comment',)
+        widgets = {'user_comment': Textarea(attrs={'cols': 35, 'rows': 5})}
+
+
 class CommentNotAuthForm(forms.ModelForm):
     class Meta:
         model = Comment
@@ -18,10 +25,3 @@ class CommentNotAuthForm(forms.ModelForm):
             'user_name': TextInput,
             'user_comment': Textarea(attrs={'cols': 30, 'rows': 5})
             }
-
-
-class CommentAuthForm(forms.ModelForm):
-    class Meta:
-        model = Comment
-        fields = ('user_comment',)
-        widgets = {'user_comment': Textarea(attrs={'cols': 30, 'rows': 5})}
