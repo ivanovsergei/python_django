@@ -1,3 +1,4 @@
+from django.contrib.auth.models import User
 from django.contrib.auth.views import LoginView, LogoutView
 from django.http import HttpResponseRedirect
 from django.shortcuts import render
@@ -53,15 +54,29 @@ class NewsEditFormView(View):
 class NewsDetailView(FormMixin, DetailView):
     template_name = 'news/news_detail.html'
     model = News
-    form_class = CommentNotAuthForm
+    if User.is_active:
+        print(User.is_active)
+        form_class = CommentAuthForm
 
-    def get_success_url(self):
-        return reverse('news_detail', kwargs={'pk': self.object.id})
 
-    def get_context_data(self, **kwargs):
-        context = super(NewsDetailView, self).get_context_data(**kwargs)
-        context['form'] = CommentNotAuthForm(initial={'post': self.object})
-        return context
+        def get_success_url(self):
+            return reverse('news_detail', kwargs={'pk': self.object.id})
+
+        def get_context_data(self, **kwargs):
+            context = super(NewsDetailView, self).get_context_data(**kwargs)
+            context['form'] = CommentNotAuthForm(initial={'post': self.object})
+            return context
+    else:
+        form_class = CommentNotAuthForm
+        print(User.is_active)
+
+        def get_success_url(self):
+            return reverse('news_detail', kwargs={'pk': self.object.id})
+
+        def get_context_data(self, **kwargs):
+            context = super(NewsDetailView, self).get_context_data(**kwargs)
+            context['form'] = CommentNotAuthForm(initial={'post': self.object})
+            return context
 
     def post(self, request, *args, **kwargs):
         self.object = self.get_object()
