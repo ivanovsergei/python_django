@@ -2,10 +2,9 @@ from django.contrib.auth.models import User
 from django.contrib.auth.views import LoginView, LogoutView
 from django.http import HttpResponseRedirect
 from django.shortcuts import render
-from django.urls import reverse
+
 from django.views import View
 from django.views.generic import ListView, DetailView
-from django.views.generic.edit import FormMixin
 
 from .forms import NewsForm, CommentFormIsAuth, CommentFormNotIsAuth
 from .models import News, Comment
@@ -26,16 +25,15 @@ class NewsFormView(View):
 
     def post(self, request):
         news_form = NewsForm(request.POST)
-
         if news_form.is_valid():
             # совершаем какую-либо логику(сохраняем в базу данных)
             News.objects.create(**news_form.cleaned_data)
             return HttpResponseRedirect('/news/news_add')
-
         return render(request, 'news/news_add.html', context={'news_form': news_form})
 
 
 class NewsEditFormView(View):
+
     def get(self, request, element_id):
         news = News.objects.get(id=element_id)
         news_form = NewsForm(instance=news)
@@ -51,22 +49,32 @@ class NewsEditFormView(View):
                                                                'element_id': element_id})
 
 
-class NewsDetailView(FormMixin, DetailView):
+class NewsDetailView(DetailView):
     template_name = 'news/news_detail.html'
     model = News
 
-    def post(self, request, news_pk):
-        news = News.objects.get(pk=news_pk)
+
+class CommentFormView(View):
+
+    def get(self, request):
         if request.user.is_authenticated:
-            form = CommentFormIsAuth(request.POST)
+            comment_form = CommentFormIsAuth(request.POST)
         else:
-            form = CommentFormNotIsAuth(request.POST)
+            comment_form = CommentFormNotIsAuth(request.POST)
+        return render(request, 'comment/comment_add.html', context={'comment_form': comment_form})
 
-        if form.is_valid():
-            # News.objects.create(**form.cleaned_data)
-            return HttpResponseRedirect('/news/news_detail')
+    def post(self, request):
+        if request.user.is_authenticated:
+            comment_form = CommentFormIsAuth(request.POST)
+        else:
+            comment_form = CommentFormNotIsAuth(request.POST)
 
-        return render(request, 'news/news_detail.html', )
+        if comment_form.is_valid():
+            # совершаем какую-либо логику(сохраняем в базу данных)
+            Comment.objects.create(**comment_form.cleaned_data)
+            return HttpResponseRedirect('/comment/comment_add')
+
+        return render(request, 'comment/comment_add.html', context={'comment_form': comment_form})
 
 
 class LoginView(LoginView):
