@@ -14,7 +14,9 @@
         <div>
             <form method="POST" class="post-auth-form">
                 {% csrf_token %}
-                {{ comment_form.as_p }}
+                <p>{{ comment_form.news }}</p>
+                <p>{{ comment_form.user_comment }}</p>
+                {{ comment_form.user_name.as_hidden}}
                 <p><button type="submit">Добавить</button></p>
             </form>
         </div>

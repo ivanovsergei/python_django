@@ -1,6 +1,6 @@
 from django.contrib.auth.models import User
 from django.contrib.auth.views import LoginView, LogoutView
-from django.http import HttpResponseRedirect
+from django.http import HttpResponseRedirect, HttpResponse
 from django.shortcuts import render
 
 from django.views import View
@@ -53,6 +53,16 @@ class NewsDetailView(DetailView):
     template_name = 'news/news_detail.html'
     model = News
 
+    def get_context_data(self, *args, **kwargs):
+        """Добавляет дополнительную форму создания комментария в контекст."""
+        context = super(NewsDetailView, self).get_context_data(*args, **kwargs)
+        if self.request.user.is_authenticated:
+            comment_form = CommentFormIsAuth()
+        else:
+            comment_form = CommentFormNotIsAuth()
+        context["comment_form"] = comment_form
+        return context
+
 
 class CommentFormView(View):
 
@@ -63,16 +73,23 @@ class CommentFormView(View):
             comment_form = CommentFormNotIsAuth(request.POST)
         return render(request, 'comment/comment_add.html', context={'comment_form': comment_form})
 
-    def post(self, request):
+    def post(self, request, news_pk, *args, **kwargs):
         if request.user.is_authenticated:
             comment_form = CommentFormIsAuth(request.POST)
+            is_auth = True
         else:
             comment_form = CommentFormNotIsAuth(request.POST)
+            is_auth = False
 
         if comment_form.is_valid():
-            # совершаем какую-либо логику(сохраняем в базу данных)
-            Comment.objects.create(**comment_form.cleaned_data)
-            return HttpResponseRedirect('/comment/comment_add')
+            data = comment_form.cleaned_data
+            data["news_id"] = news_pk
+            if is_auth:
+                data["user_name"] = User.objects.get(pk=self.request.user.id)
+            else:
+                data["user_name"] = User.objects.get(pk=2)
+            Comment.objects.create(**data)
+            return HttpResponseRedirect(f'/news/{news_pk}')
 
         return render(request, 'comment/comment_add.html', context={'comment_form': comment_form})
 

@@ -1,4 +1,4 @@
-from django.forms import Textarea, TextInput
+from django.forms import Textarea
 
 from .models import News, Comment
 from django import forms
@@ -20,8 +20,7 @@ class CommentFormIsAuth(forms.ModelForm):
 class CommentFormNotIsAuth(forms.ModelForm):
     class Meta:
         model = Comment
-        fields = ('user_name', 'user_comment')
+        fields = ('not_auth_user_name', 'user_comment')
         widgets = {
-            'user_name': TextInput,
             'user_comment': Textarea(attrs={'cols': 30, 'rows': 5})
             }

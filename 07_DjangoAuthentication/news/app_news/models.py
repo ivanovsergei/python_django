@@ -26,7 +26,8 @@ class Comment(models.Model):
         ('d', 'Удалено Администратором'),
     ]
     user_name = models.ForeignKey(User, on_delete=models.CASCADE, verbose_name='Имя пользователя')
-    user_comment = models.CharField(max_length=2000, verbose_name='Комментарий')
+    not_auth_user_name = models.CharField(max_length=30, default=None, null=True, verbose_name='Имя пользователя')
+    user_comment = models.CharField(max_length=2000, null=True, blank=True, verbose_name='Комментарий')
     news = models.ForeignKey('News', default=None, on_delete=models.SET_NULL, null=True,
                              related_name='comments', verbose_name='Новости')
     status = models.CharField(max_length=1, choices=STATUS_CHOICES, default='a', verbose_name='Статус')

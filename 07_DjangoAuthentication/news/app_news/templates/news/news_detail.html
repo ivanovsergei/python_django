@@ -17,5 +17,9 @@
         </li>
         {% endfor %}
     </ul>
+        <form action="/comment/comment_add/{{ object.pk }}" method="post">{% csrf_token %}
+            {{ comment_form.as_p }}
+            <p><button type="submit">Добавить</button></p>
+        </form>
 </body>
 </html>
