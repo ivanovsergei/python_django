@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>news-detail</title>
+</head>
+<body>
+    <h1>{{ object.name }}</h1>
+    <a href="{% url 'news_list' %}">На главную</a>
+
+    <p>Содержание: {{ object.content }}</p>
+    <ul>
+        {% for comment in object.comments.all %}
+        <li>
+            <p> Комментарий: {{comment.user_comment}} </p>
+            <p> Автор: {{comment.user_name}} </p>
+        </li>
+        {% endfor %}
+    </ul>
+        <form action="/comment/comment_add/{{ object.pk }}" method="post">{% csrf_token %}
+            {{ comment_form.as_p }}
+            <p><button type="submit">Добавить</button></p>
+        </form>
+</body>
+</html>

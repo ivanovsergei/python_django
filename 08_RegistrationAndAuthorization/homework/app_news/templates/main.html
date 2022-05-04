@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Главная</title>
+</head>
+<body>
+    <h2>Это главная страница!</h2>
+    {% if request.user.is_authenticated %}
+        <h3>Добро пожаловать на сайт {{ request.user.username }}</h3>
+        <p>Номер телефона: {{ request.user.profile.telephone}}</p>
+        <p>Город: {{ request.user.profile.city }}</p>
+         <p><a href="{% url 'logout' %}">Выйти</a></p>
+    {% else %}
+        <h3>Вы неавторизованный пользователь.</h3>
+        <p><a href="{% url 'login' %}">Войти</a></p>
+        <p><a href="{% url 'register' %}">Регистрация</a></p>
+
+    {% endif %}
+    <h2>Все новости:</h2>
+    {% if news_list %}
+    <ul>
+        {% for news in news_list %}
+        <li>
+            <a href="/news/{{ news.id }}">{{ news.title }}</a>
+        </li>
+        {% endfor %}
+    </ul>
+    {% else %}
+        <p>Список пуст</p>
+    {% endif %}
+</body>
+</html>

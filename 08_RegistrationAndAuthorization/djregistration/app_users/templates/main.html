@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Главная</title>
+</head>
+<body>
+    <h2>Это главная страница!</h2>
+    {% if request.user.is_authenticated %}
+        <h3>Добро пожаловать на сайт {{ request.user.username }}</h3>
+        <p>Дата рождения: {{ request.user.profile.date_of_birth }}</p>
+        <p>Город: {{ request.user.profile.city }}</p>
+         <p><a href="{% url 'another_logout' %}">Выйти</a></p>
+    {% else %}
+        <h3>Вы неавторизованный пользователь.</h3>
+        <p><a href="{% url 'another_login' %}">Войти</a></p>
+        <p><a href="{% url 'register' %}">Регистрация</a></p>
+
+    {% endif %}
+</body>
+</html>
