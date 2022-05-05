@@ -17,6 +17,10 @@
         <p><a href="{% url 'register' %}">Регистрация</a></p>
 
     {% endif %}
+    <p>Поиск по тегам:</p>
+    <form action="{% url 'search_results' %}" method="get">
+        <input name="q" type="text" placeholder="Search...">
+    </form>
     <h2>Все новости:</h2>
     {% if news_list %}
     <ul>

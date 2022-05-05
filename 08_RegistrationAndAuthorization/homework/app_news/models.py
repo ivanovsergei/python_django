@@ -8,6 +8,7 @@ class News(models.Model):
     content = models.TextField(max_length=2000, verbose_name='Содержание')
     created_at = models.DateTimeField(auto_now_add=True, verbose_name='Дата создания')
     updated_at = models.DateTimeField(auto_now=True, verbose_name='Дата обновления')
+    tags = models.CharField(max_length=200, null=True, verbose_name='Тег')
 
     class Meta:
         ordering = ['created_at']

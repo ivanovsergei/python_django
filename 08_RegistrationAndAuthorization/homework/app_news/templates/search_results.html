@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Search</title>
+</head>
+<body>
+    <h2>Search Results</h2>
+    {% if news_list %}
+    <ul>
+      {% for news in object_list %}
+        <li>
+          {{ news.title }}
+        </li>
+      {% endfor %}
+    </ul>
+    {% else %}
+        <p>Список пуст</p>
+    {% endif %}
+</body>
+</html>

@@ -11,8 +11,17 @@ from django.core.exceptions import PermissionDenied
 class MainNewsListView(ListView):
     model = News
     template_name = 'main.html'
-    context_object_name = 'news_list'
     queryset = News.objects.all()
+
+
+class SearchResultsView(ListView):
+    model = News
+    template_name = 'search_results.html'
+
+    def get_queryset(self):
+        query = self.request.GET.get('q')
+        object_list = News.objects.filter(tags__istartswith=query)
+        return object_list
 
 
 class NewsFormView(View):

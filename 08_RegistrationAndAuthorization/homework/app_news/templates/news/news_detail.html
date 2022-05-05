@@ -7,6 +7,7 @@
 <body>
     <h1>{{ object.name }}</h1>
     <a href="{% url 'news_list' %}">На главную</a>
+    <p class="tags">Тег: {{ object.tags}}</p>
 
     <p>Содержание: {{ object.content }}</p>
     <ul>
