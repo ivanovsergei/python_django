@@ -38,13 +38,13 @@ def register_view(request):
 
 class UserEditFormView(View):
     def get(self, request, user_id):
-        user = User.objects.get(id=user_id)
+        user = Profile.objects.get(id=user_id)
         user_form = UserForm(instance=user)
         return render(request, 'users/user_edit.html', context={'user_form': user_form,
                                                                 'user_id': user_id})
 
     def post(self, request, user_id):
-        user = User.objects.get(id=user_id)
+        user = Profile.objects.get(id=user_id)
         user_form = UserForm(request.POST, instance=user)
         if user_form.is_valid():
             user.save()
