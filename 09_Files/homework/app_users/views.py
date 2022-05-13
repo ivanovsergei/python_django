@@ -1,5 +1,5 @@
 from django.contrib.auth import authenticate, login
-from django.contrib.auth.models import User
+from django.core.exceptions import PermissionDenied
 from django.shortcuts import render, redirect
 from django.views import View
 
@@ -38,6 +38,8 @@ def register_view(request):
 
 class UserEditFormView(View):
     def get(self, request, user_id):
+        if not request.user.is_authenticated:
+            raise PermissionDenied()
         user = Profile.objects.get(id=user_id)
         user_form = UserForm(instance=user)
         return render(request, 'users/user_edit.html', context={'user_form': user_form,
