@@ -10,5 +10,18 @@
 
     <p>Содержание статьи: {{ object.article }}</p>
     <p> Автор: {{object.username}} </p>
+
+    <h2>Файлы к статье:</h2>
+    {% if article_files %}
+    <ul>
+        {% for file in article_files %}
+        <li>
+            <a href="/media/{{file}}">{{file.filename}}</a>
+        </li>
+        {% endfor %}
+    </ul>
+    {% else %}
+        <p>Файлов для статьи нет</p>
+    {% endif %}
 </body>
 </html>
