@@ -10,3 +10,7 @@ class BlogForm(forms.ModelForm):
 
 class MultiFileForm(forms.Form):
     file_field = forms.FileField(widget=forms.ClearableFileInput(attrs={'multiple': True}))
+
+
+class UploadPriceForm(forms.Form):
+    file = forms.FileField()
