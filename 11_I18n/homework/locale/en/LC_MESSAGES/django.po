@@ -1,0 +1,223 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2022-05-27 13:30+0300\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: .\app_blog\apps.py:7
+msgid "блог"
+msgstr "blog"
+
+#: .\app_blog\forms.py:13
+msgid "Загрузка файлов"
+msgstr "Upload files"
+
+#: .\app_blog\models.py:8
+msgid "Название"
+msgstr "title"
+
+#: .\app_blog\models.py:9
+msgid "Автор статьи"
+msgstr "Author username"
+
+#: .\app_blog\models.py:10 .\app_blog\templates\blog\blog_detail.html:29
+msgid "Содержание статьи"
+msgstr "The content of the article"
+
+#: .\app_blog\models.py:11 .\app_blog\models.py:28
+msgid "Дата создания"
+msgstr "Created at"
+
+#: .\app_blog\models.py:12
+msgid "Дата обновления"
+msgstr "Updated at"
+
+#: .\app_blog\models.py:16
+msgid "статья"
+msgstr "blog"
+
+#: .\app_blog\models.py:17
+msgid "статьи"
+msgstr "blogs"
+
+#: .\app_blog\models.py:24 .\app_blog\templates\blog\blog_detail.html:32
+msgid "Файлы к статье"
+msgstr "Files for the article"
+
+#: .\app_blog\models.py:26
+msgid "Название файла"
+msgstr "File name"
+
+#: .\app_blog\models.py:27
+msgid "Описание"
+msgstr "Description"
+
+#: .\app_blog\models.py:32
+msgid "файл"
+msgstr "file"
+
+#: .\app_blog\models.py:33
+msgid "файлы"
+msgstr "files"
+
+#: .\app_blog\templates\blog\blog_detail.html:6
+msgid "Информация о блоге"
+msgstr "Blog detail"
+
+#: .\app_blog\templates\blog\blog_detail.html:27
+msgid "На Главную страницу"
+msgstr "To the Main site"
+
+#: .\app_blog\templates\blog\blog_detail.html:30
+msgid "Автор"
+msgstr "Author"
+
+#: .\app_blog\templates\blog\blog_detail.html:42
+msgid "Файлов для статьи нет"
+msgstr "There are no files for the article"
+
+#: .\app_blog\templates\blog\blog_edit.html:6
+#: .\app_users\templates\users\user_edit.html:6
+msgid "Редактирование"
+msgstr "Editing"
+
+#: .\app_blog\templates\blog\blog_edit.html:26
+msgid "Редактирование статьи"
+msgstr "Editing an article"
+
+#: .\app_blog\templates\blog\blog_edit.html:30
+#: .\app_users\templates\users\user_edit.html:29
+msgid "Сохранить"
+msgstr "Save"
+
+#: .\app_blog\templates\main.html:6
+msgid "Главная"
+msgstr "Main site"
+
+#: .\app_blog\templates\main.html:26
+msgid "Это главная страница"
+msgstr "Main site"
+
+#: .\app_blog\templates\main.html:28
+msgid "Добро пожаловать на сайт"
+msgstr "Welcome to the website"
+
+#: .\app_blog\templates\main.html:29
+msgid "Имя пользователя"
+msgstr "User name"
+
+#: .\app_blog\templates\main.html:30 .\app_users\models.py:11
+msgid "Город"
+msgstr "City"
+
+#: .\app_blog\templates\main.html:33
+msgid "Вы неавторизованный пользователь"
+msgstr "You are an unauthorized user"
+
+#: .\app_blog\templates\main.html:34
+msgid "Войти"
+msgstr "Login"
+
+#: .\app_blog\templates\main.html:35
+#: .\app_users\templates\users\register.html:6
+#: .\app_users\templates\users\register.html:25
+msgid "Регистрация"
+msgstr "Sign up"
+
+#: .\app_blog\templates\main.html:39
+msgid "Список статей"
+msgstr "List of articles"
+
+#: .\app_blog\templates\main.html:49
+msgid "Список пуст"
+msgstr "The list is empty"
+
+#: .\app_blog\templates\media\img_form_upload.html:6
+msgid "Загрузка изображений"
+msgstr "Uploading Images"
+
+#: .\app_blog\templates\media\img_form_upload.html:26
+msgid "Загрузить картинки для блога"
+msgstr "Upload images for the blog"
+
+#: .\app_blog\templates\media\img_form_upload.html:30
+msgid "Загрузить"
+msgstr "Upload"
+
+#: .\app_blog\templates\media\upload_file.html:6
+msgid "Загрузка блогов"
+msgstr "Uploading blogs"
+
+#: .\app_blog\templates\media\upload_file.html:26
+msgid "Загрузить блог(и)"
+msgstr "Upload the blog(s)"
+
+#: .\app_blog\templates\media\upload_file.html:30
+msgid "Загрузить файл"
+msgstr "Upload the file"
+
+#: .\app_users\apps.py:7
+msgid "пользователи"
+msgstr "Users"
+
+#: .\app_users\models.py:8
+msgid "Имя"
+msgstr "First name"
+
+#: .\app_users\models.py:9
+msgid "Фамилия"
+msgstr "Last name"
+
+#: .\app_users\models.py:10
+msgid "О себе"
+msgstr "Description"
+
+#: .\app_users\models.py:17
+msgid "профиль"
+msgstr "profile"
+
+#: .\app_users\models.py:18
+msgid "профили"
+msgstr "profiles"
+
+#: .\app_users\templates\users\login.html:6
+msgid "Вход"
+msgstr "Login"
+
+#: .\app_users\templates\users\login.html:25
+msgid "Страница входа"
+msgstr "Login page"
+
+#: .\app_users\templates\users\logout.html:6
+msgid "Выход"
+msgstr "Logout"
+
+#: .\app_users\templates\users\logout.html:25
+msgid "Страница выхода с сайта"
+msgstr "Logout page"
+
+#: .\app_users\templates\users\logout.html:26
+msgid "Вы успешно вышли из под вашей учетной записи"
+msgstr "You have logged out"
+
+#: .\app_users\templates\users\register.html:29
+msgid "Зарегистрировать"
+msgstr "Sign in"
+
+#: .\app_users\templates\users\user_edit.html:25
+msgid "Редактирование данных пользователя"
+msgstr "User edit"
