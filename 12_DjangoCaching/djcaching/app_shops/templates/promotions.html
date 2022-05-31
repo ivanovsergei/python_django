@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Промо акции</title>
+</head>
+<body>
+    <h2>Промо акции для пользователя {{ user.username }}</h2>
+    {% if promotion_list %}
+        {% for promotion in promotion_list %}
+            <p>{{ promotion.title }}</p>
+        {% endfor %}
+    {% else %}
+            <p>Список промо акций пуст</p>
+    {% endif %}
+</body>
+</html>

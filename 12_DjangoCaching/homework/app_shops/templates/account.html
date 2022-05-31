@@ -1,0 +1,64 @@
+{% load i18n %}
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>{% trans 'Кабинет пользователя' %}</title>
+</head>
+<body>
+    <header>
+        <form action="{% url 'set_language' %}" method="post">{% csrf_token %}
+        <input name="next" type="hidden" value="{{ redirect_to }}">
+        <select name="language">
+            {% get_current_language as LANGUAGE_CODE %}
+            {% get_available_languages as LANGUAGES %}
+            {% get_language_info_list for LANGUAGES as languages %}
+            {% for language in languages %}
+                <option value="{{ language.code }}"{% if language.code == LANGUAGE_CODE %} selected{% endif %}>
+                    {{ language.name_local }} ({{ language.code }})
+                </option>
+            {% endfor %}
+        </select>
+        <input type="submit" value="Go">
+    </form>
+    </header>
+
+    <h2>{% trans 'Личный кабинет пользователя' %} {{ user.username }}</h2>
+    <p>{% trans 'Ваш баланс:' %} {{ balance.amount }}</p>
+    <h2>{% trans 'Промо акции:' %}</h2>
+    {% if promotions %}
+        {% for promotion in promotions %}
+            <p>{{ promotion.title }}</p>
+        {% endfor %}
+    {% else %}
+            <p>{% trans 'Список промо акций пуст' %}</p>
+    {% endif %}
+    <h2>{% trans 'Предложения для вас:' %}</h2>
+    {% if offers %}
+        {% for offer in offers %}
+            <p>{{ offer.title }}</p>
+        {% endfor %}
+    {% else %}
+            <p>{% trans 'Список предложений пуст' %}</p>
+    {% endif %}
+
+    <h2>{% trans 'История покупок:' %}</h2>
+    {% load cache %}
+    {% cache 500 payment_history %}
+        {% block payment_history %}
+            {% if payment_history %}
+                {% for item in payment_history %}
+                    <ul>
+                        <li>
+                            {{ item.good }}
+                            <p>{{ item.price }}</p>
+                        </li>
+                    </ul>
+                {% endfor %}
+            {% else %}
+                <p>{% trans 'Список покупок пуст' %}</p>
+            {% endif %}
+        {% endblock %}
+    {% endcache %}
+</body>
+</html>

@@ -1,0 +1,181 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2022-05-31 12:43+0300\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: .\app_shops\apps.py:7 .\app_shops\models.py:25
+msgid "магазины"
+msgstr "shops"
+
+#: .\app_shops\models.py:7 .\app_shops\models.py:30 .\app_shops\models.py:39
+#: .\app_shops\models.py:48 .\app_shops\models.py:59
+msgid "Пользователь"
+msgstr "User"
+
+#: .\app_shops\models.py:13
+msgid "покупатель"
+msgstr "client"
+
+#: .\app_shops\models.py:14
+msgid "покупатели"
+msgstr "clients"
+
+#: .\app_shops\models.py:18
+msgid "Название магазина"
+msgstr "Store name"
+
+#: .\app_shops\models.py:24
+msgid "магазин"
+msgstr "shop"
+
+#: .\app_shops\models.py:29
+msgid "Название акции"
+msgstr "Name of the promotion"
+
+#: .\app_shops\models.py:33
+msgid "промо акция"
+msgstr "promotion"
+
+#: .\app_shops\models.py:34
+msgid "промо акции"
+msgstr "promotions"
+
+#: .\app_shops\models.py:38
+msgid "Сумма"
+msgstr "Amount"
+
+#: .\app_shops\models.py:42 .\app_shops\models.py:43
+msgid "баланс"
+msgstr "balance"
+
+#: .\app_shops\models.py:47
+msgid "Предложения"
+msgstr "Offers"
+
+#: .\app_shops\models.py:51
+msgid "предложение"
+msgstr "offer"
+
+#: .\app_shops\models.py:52
+msgid "предложения"
+msgstr "offers"
+
+#: .\app_shops\models.py:56
+msgid "Товар"
+msgstr "Good"
+
+#: .\app_shops\models.py:57
+msgid "Цена"
+msgstr "Price"
+
+#: .\app_shops\models.py:62 .\app_shops\models.py:63
+msgid "история покупок"
+msgstr "purchase history"
+
+#: .\app_shops\templates\account.html:6
+msgid "Кабинет пользователя"
+msgstr "User Account"
+
+#: .\app_shops\templates\account.html:26
+msgid "Личный кабинет пользователя"
+msgstr "User Account"
+
+#: .\app_shops\templates\account.html:27
+msgid "Ваш баланс:"
+msgstr "Your balance:"
+
+#: .\app_shops\templates\account.html:28
+msgid "Промо акции:"
+msgstr "Promotions:"
+
+#: .\app_shops\templates\account.html:34
+msgid "Список промо акций пуст"
+msgstr "The list of promotions is empty"
+
+#: .\app_shops\templates\account.html:36
+msgid "Предложения для вас:"
+msgstr "Offers for you"
+
+#: .\app_shops\templates\account.html:42
+msgid "Список предложений пуст"
+msgstr "The list of offers is empty"
+
+#: .\app_shops\templates\account.html:45
+msgid "История покупок:"
+msgstr "Purchase history"
+
+#: .\app_shops\templates\account.html:59
+msgid "Список покупок пуст"
+msgstr "The list of purchase is empty"
+
+#: .\app_shops\templates\main.html:6
+msgid "Главная"
+msgstr "Main page"
+
+#: .\app_shops\templates\main.html:26
+msgid "Это главная страница!"
+msgstr "This is the main page!"
+
+#: .\app_shops\templates\main.html:28
+msgid "Добро пожаловать на сайт"
+msgstr "Welcome to the website"
+
+#: .\app_shops\templates\main.html:29
+msgid "Имя пользователя:"
+msgstr "First name:"
+
+#: .\app_shops\templates\main.html:30
+msgid "Выйти"
+msgstr "Logout"
+
+#: .\app_shops\templates\main.html:32
+msgid "Вы неавторизованный пользователь."
+msgstr "You are an unauthorized user."
+
+#: .\app_shops\templates\main.html:33 .\app_users\templates\login.html:30
+msgid "Войти"
+msgstr "Login"
+
+#: .\app_shops\templates\main.html:34 .\app_users\templates\register.html:6
+#: .\app_users\templates\register.html:26
+msgid "Регистрация"
+msgstr "Sign in"
+
+#: .\app_shops\templates\main.html:38
+msgid "Список магазинов:"
+msgstr "List of stores"
+
+#: .\app_shops\templates\main.html:48
+msgid "Список магазинов пуст"
+msgstr "The list of stores is empty"
+
+#: .\app_users\apps.py:7
+msgid "пользователи"
+msgstr "users"
+
+#: .\app_users\templates\login.html:6
+msgid "Вход"
+msgstr "Log in"
+
+#: .\app_users\templates\login.html:26
+msgid "Страница входа"
+msgstr "Login page"
+
+#: .\app_users\templates\register.html:30
+msgid "Записать"
+msgstr "Sign in"
