@@ -1,0 +1,7 @@
+POST http://localhost:8000/api/goods/
+Accept: */*
+Cache-Control: no-chache
+
+{"name": "Новый товар", "weight":100, "description": "Самый лучший"}
+
+<> 2022-06-03T130647.201.json
