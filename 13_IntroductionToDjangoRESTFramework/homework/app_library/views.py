@@ -40,9 +40,9 @@ class AuthorListMixin(ListModelMixin, CreateModelMixin, GenericAPIView):
 
     def get_queryset(self):
         queryset = Author.objects.all()
-        book_title = self.request.query_params.get('title')
-        if book_title:
-            queryset = queryset.filter(first_name=book_title)
+        book_author = self.request.query_params.get('author')
+        if book_author:
+            queryset = queryset.filter(author__last_name=book_author)
         return queryset
 
     def get(self, request):
