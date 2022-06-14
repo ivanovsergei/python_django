@@ -1,0 +1,39 @@
+from django.db import connection, reset_queries
+connection.queries
+reset_queries()
+
+Post.objects.select_related('blog').all()
+
+posts = Post.objects.select_related('blog').prefetch_related('author').all()
+
+>>> post = Post.objects.first()
+>>> post.title = 'Новый заголовок'
+>>> post.save(update_fields=['title'])
+
+first_post = Post.objects.only('id').first()
+
+>>> blog_to_insert = []
+>>> blog_to_insert = [Blog(name='blog 4'), Blog(name='blog 5')]
+>>> Blog.objects.bulk_create(blog_to_insert)
+[<Blog: blog 4>, <Blog: blog 5>]
+
+>>> from app_blogs.models import Post
+>>> from django.db.models import Avg
+>>> Post.objects.aggregate(avg_likes=Avg('likes_count'))
+{'avg_likes': 12.0}
+>>> from django.db.models import Count
+>>> posts = Post.objects.annotate(num_authors=Count('author'))
+>>> posts[0].num_authors
+1
+
+>>> posts = Post.objects.annotate(num_authors=Count('author')).aggregate(Avg('num_authors'))
+>>> posts
+{'num_authors__avg': 1.0}
+>>>
+
+>>> objs = [Post.objects.get(id=1),]
+>>> objs = [Post.objects.get(id=1),Post.objects.get(id=2)]
+>>> objs[0].title = 'Обновления заголовка 1'
+>>> objs[1].title = 'Обновления заголовка 2'
+>>> Post.objects.bulk_update(objs, ['title'])
+

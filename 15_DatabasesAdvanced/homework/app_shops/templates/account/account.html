@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Кабинет пользователя</title>
+</head>
+<body>
+    <header>
+        <p>Ваш баланс: {{ balance }}</p>
+        <p>Текущий статус : {{ status }}</p>
+    </header>
+
+    <h2>Личный кабинет пользователя {{ user.username }}</h2>
+    <p><a href="{% url 'account_refill' %}">Пополнить баланс</a></p>
+    <p>История покупок:</p>
+    <p>Список пуст</p>
+</body>
+</html>

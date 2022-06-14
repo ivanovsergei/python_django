@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Пополнение баланса</title>
+</head>
+<body>
+    <h2>Пополнить баланс</h2>
+    <form method="post" action="/account/account_refill">
+        {% csrf_token %}
+        {{ balance_form.as_p }}
+        <button type="submit">Пополнить</button>
+    </form>
+</body>
+</html>
