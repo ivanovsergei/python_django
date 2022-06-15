@@ -24,9 +24,13 @@
     {% if goods %}
     <ul>
         {% for good in goods %}
-        <li>
-            <p>{{ good.name }} : {{ good.shops.all }}</p>
-        </li>
+            <li>
+                {{ good.name }}
+            </li>
+
+            {% for shop in good.shops.all  %}
+                <p>{{ shop }}</p>
+            {% endfor %}
         {% endfor %}
     </ul>
     {% else %}
