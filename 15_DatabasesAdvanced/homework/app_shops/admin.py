@@ -9,9 +9,12 @@ class ShopAdmin(admin.ModelAdmin):
 
 @admin.register(Good)
 class GoodAdmin(admin.ModelAdmin):
-    list_display = ['name']
+    list_display = ['name', 'price', 'stock', 'top_sell', 'created']
+    list_editable = ['price', 'stock']
+    list_filter = ['created']
+    prepopulated_fields = {'slug': ('name',)}
 
 
 @admin.register(Account)
 class AccountAdmin(admin.ModelAdmin):
-    list_display = ['user', 'id', 'status', 'balance']
+    list_display = ['user', 'id', 'balance', 'status', 'spend_money']

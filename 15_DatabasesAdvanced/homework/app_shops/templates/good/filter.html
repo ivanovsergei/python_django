@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Отчет по продажам</title>
+</head>
+<body>
+    <h2>Отчет по продажам товаров:</h2>
+    <a href="{% url 'good_filter' pk=1 %}"><button>Неделя</button></a>
+    <a href="{% url 'good_filter' pk=2 %}"><button>Месяц</button></a>
+    <a href="{% url 'good_filter' pk=3 %}"><button>Все</button></a>
+    {% if goods %}
+    <ul>
+        {% for good in goods %}
+            <li>
+                <p>{{ good.id }} {{ good.name }}. Kол-во продаж: {{ good.top_sell }}</p>
+            </li>
+        {% endfor %}
+    </ul>
+    {% else %}
+        <p>Список товаров пуст</p>
+    {% endif %}
+</body>
+</html>

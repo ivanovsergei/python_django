@@ -25,7 +25,7 @@
     <ul>
         {% for good in goods %}
             <li>
-                {{ good.name }}
+                <a href="/good_detail/{{ good.id }}">{{ good.name }}</a>
             </li>
 
             {% for shop in good.shops.all  %}
