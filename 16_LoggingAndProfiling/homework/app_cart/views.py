@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.views.decorators.http import require_POST
-from django.db import IntegrityError
+from django.db import IntegrityError, transaction
 from app_shops.models import Good, Account
 from .cart import Cart
 from .forms import CartAddGoodForm
@@ -40,11 +40,12 @@ def cart_purchase(request, id):
             if item['good'] == cart_good:
                 cart_good_quantity = item['quantity']
                 cart_good_price = item['price']
-                good.stock -= cart_good_quantity
-                good.top_sell += 1
-                user.balance -= cart_good_price
-                logger.info('Списание баллов с баланса')
-                user.spend_money += cart_good_price
+                with transaction.atomic():
+                    good.stock -= cart_good_quantity
+                    good.top_sell += 1
+                    user.balance -= cart_good_price
+                    logger.info('Списание баллов с баланса')
+                    user.spend_money += cart_good_price
         good.save(update_fields=['stock', 'top_sell'])
         user.save(update_fields=['balance', 'spend_money'])
     except IntegrityError:
