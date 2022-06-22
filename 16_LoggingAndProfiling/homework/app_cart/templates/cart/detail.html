@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Корзина</title>
+</head>
+<body>
+{% block content %}
+    <h2>Корзина</h2>
+    <table class="cart">
+        <thead>
+        <tr>
+            <th>Наименование товара</th>
+            <th>Кол-во</th>
+            <th>Удалить</th>
+            <th>Цена за 1 шт.</th>
+            <th>Итого</th>
+            <th>Оплата</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for item in cart %}
+            {% with good=item.good %}
+                <tr>
+                    <td>{{ good.name }}</td>
+                    <td>{{ item.quantity }}</td>
+                    <td><a href="{% url "cart:cart_remove" good.id%}">Удалить</a></td>
+                    <td class="num">${{ item.price }}</td>
+                    <td class="num">${{ item.total_price }}</td>
+                    <td><a href="{% url "cart:cart_purchase" good.id%}">Купить</a></td>
+
+                </tr>
+            {% endwith %}
+        {% endfor %}
+        <tr class="total">
+            <td>Итоговая стоимость:</td>
+            <td colspan="3"></td>
+            <td class="num">${{ cart.get_total_price }}</td>
+        </tr>
+        </tbody>
+    </table>
+    <p class="text-right">
+        <a href="{% url "main" %}" class="button light">Продолжить покупки</a>
+        <a href="#" class="button">Проверить</a>
+    </p>
+{% endblock %}
+</body>
+</html>
