@@ -1,7 +1,11 @@
+import requests
 from django.contrib.auth.views import LogoutView, LoginView
 from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login
 from .forms import RegisterForm
+import logging
+
+logger = logging.getLogger(__name__)
 
 
 def register_view(request):
@@ -24,6 +28,7 @@ def register_view(request):
 
 class Login(LoginView):
     template_name = 'login.html'
+    logger.info('Аутентификация пользователя')
 
 
 class Logout(LogoutView):

@@ -9,15 +9,8 @@ from app_cart.forms import CartAddGoodForm
 from datetime import datetime, timedelta
 from django.utils import timezone
 import logging
-from django.contrib.auth.models import User
-
 
 logger = logging.getLogger(__name__)
-c_handler = logging.StreamHandler()
-c_handler.setLevel(logging.INFO)
-c_format = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
-c_handler.setFormatter(c_format)
-logger.addHandler(c_handler)
 
 
 class MainShopListView(ListView):
@@ -44,9 +37,11 @@ def account(request):
     if 100 < user.spend_money < 200:
         user.status = 'a'
         user.save(update_fields=['status'])
+        logger.info('переход пользователя по статусной системе (a, средний')
     else:
         user.status = 'h'
         user.save(update_fields=['status'])
+        logger.info('переход пользователя по статусной системе (h, высокий')
     status = user.get_status_display()
     return render(request, 'account/account.html', context={
         'balance': balance,
@@ -59,6 +54,7 @@ class AccountRefillView(View):
     def get(self, request):
         if not request.user.is_authenticated:
             raise PermissionDenied()
+        logger.info('Пополнение баланса')
         balance_form = BalanceForm()
         return render(request, 'account/account_refill.html', context={'balance_form': balance_form})
 

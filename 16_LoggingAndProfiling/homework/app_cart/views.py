@@ -4,6 +4,9 @@ from django.db import IntegrityError
 from app_shops.models import Good, Account
 from .cart import Cart
 from .forms import CartAddGoodForm
+import logging
+
+logger = logging.getLogger(__name__)
 
 
 @require_POST
@@ -40,6 +43,7 @@ def cart_purchase(request, id):
                 good.stock -= cart_good_quantity
                 good.top_sell += 1
                 user.balance -= cart_good_price
+                logger.info('Списание баллов с баланса')
                 user.spend_money += cart_good_price
         good.save(update_fields=['stock', 'top_sell'])
         user.save(update_fields=['balance', 'spend_money'])
@@ -50,4 +54,5 @@ def cart_purchase(request, id):
 
 def cart_detail(request):
     cart = Cart(request)
+    logger.info('Оформление заказа')
     return render(request, 'cart/detail.html', {'cart': cart})
