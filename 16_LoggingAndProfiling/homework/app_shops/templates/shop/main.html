@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Главная</title>
+</head>
+<body>
+    <header>
+    <p><a href="{% url 'account' %}">Личный кабинет</a></p>
+    </header>
+
+    <h2>Это главная страница!</h2>
+    {% if request.user.is_authenticated %}
+        <h3>Добро пожаловать на сайт {{ request.user.username }}</h3>
+        <p><a href="{% url 'logout' %}">Выйти</a></p>
+    {% else %}
+        <h3>Вы неавторизованный пользователь.</h3>
+        <p><a href="{% url 'login' %}">Войти</a></p>
+        <p><a href="{% url 'register' %}">Регистрация</a></p>
+
+    {% endif %}
+
+    <h2>Список магазинов:</h2>
+    {% if goods %}
+    <ul>
+        {% for good in goods %}
+            <li>
+                <a href="/good_detail/{{ good.id }}">{{ good.name }}</a>
+            </li>
+
+            {% for shop in good.shops.all  %}
+                <p>{{ shop }}</p>
+            {% endfor %}
+        {% endfor %}
+    </ul>
+    {% else %}
+        <p>Список магазинов пуст</p>
+    {% endif %}
+</body>
+</html>
